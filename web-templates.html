@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PloiMarket - 웹 템플릿</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 맛길 스타일 통합 헤더 -->
+    <header class="site-header">
+        <div class="header-left">
+            <h1><a href="index.html">PloiMarket</a></h1>
+            <nav class="site-nav">
+                <a href="about.html">About</a>
+                <a href="best.html">베스트 상품</a>
+                <a href="it-devices.html">IT 기기</a>
+                <a href="web-templates.html" class="active">웹 템플릿</a>
+                <a href="cs.html">고객센터</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input class="search-input" type="text" id="searchInput" placeholder="찾으시는 상품이 있나요?">
+                <button class="search-button" type="button" onclick="searchBtn()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <button class="btn-darkmode" type="button" onclick="toggleDarkMode()">🌙</button>
+            <a href="login.html" class="btn-login">로그인</a>
+            <a href="signup.html" class="btn-signup">회원가입</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="site-intro fade-in">
+            <h2>프리미엄 웹 템플릿</h2>
+            <p>React, Vue, HTML 등 다양한 프레임워크로 제작된 퀄리티 높은 템플릿을 만나보세요.</p>
+        </div>
+
+        <!-- 독창적인 탭 디자인 (필터) -->
+        <div class="filter-tabs fade-in" style="margin-bottom: 30px; display: flex; justify-content: center; gap: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+            <span style="font-weight: bold; color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 8px; cursor: pointer;">전체</span>
+            <span style="color: var(--text-muted); cursor: pointer;">React / Vue</span>
+            <span style="color: var(--text-muted); cursor: pointer;">쇼핑몰</span>
+            <span style="color: var(--text-muted); cursor: pointer;">대시보드</span>
+        </div>
+
+        <div class="product-list fade-in">
+            <div class="item">
+                <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                <div class="item-info">
+                    <h4>리액트(React) 대시보드 템플릿</h4>
+                    <div class="item-meta">⭐ 4.9 · 리뷰 950개</div>
+                    <p>50,000원</p>
+                    <button type="button" onclick="openModal('리액트(React) 대시보드 템플릿', '50,000원', '관리자 페이지를 단 하루만에 구축할 수 있는 깔끔한 UI의 템플릿입니다.')">상세보기</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                <div class="item-info">
+                    <h4>Vue.js 쇼핑몰 템플릿</h4>
+                    <div class="item-meta">⭐ 4.8 · 리뷰 780개</div>
+                    <p>45,000원</p>
+                    <button type="button" onclick="openModal('Vue.js 쇼핑몰 템플릿', '45,000원', '반응형 디자인과 컴포넌트 구조가 잘 짜여진 Vue3 쇼핑몰 소스입니다.')">상세보기</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                <div class="item-info">
+                    <h4>Tailwind CSS 관리자 대시보드</h4>
+                    <div class="item-meta">⭐ 4.7 · 리뷰 420개</div>
+                    <p>35,000원</p>
+                    <button type="button" onclick="openModal('Tailwind CSS 관리자 대시보드', '35,000원', 'Tailwind로 만들어져 커스터마이징이 매우 쉬운 대시보드 테마입니다.')">상세보기</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                <div class="item-info">
+                    <h4>Vue 3 e-Commerce 풀스택</h4>
+                    <div class="item-meta">⭐ 4.9 · 리뷰 1,100개</div>
+                    <p>60,000원</p>
+                    <button type="button" onclick="openModal('Vue 3 e-Commerce 풀스택 템플릿', '60,000원', '프론트부터 백엔드까지 연결된 실무 활용 쇼핑몰 템플릿입니다.')">상세보기</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <!-- 하단 푸터 영역 -->
+    <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 60px;">
+        <h3 style="margin-bottom: 15px; color: #2c3e50; font-weight: 800;">PloiMarket</h3>
+        <div style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-muted);">
+            <a href="about.html" style="color: inherit; text-decoration: none; margin: 0 15px;">회사소개</a>
+            <a href="cs.html" style="color: inherit; text-decoration: none; margin: 0 15px;">고객센터</a>
+            <a href="#" style="color: inherit; text-decoration: none; margin: 0 15px;">이용약관</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 PloiMarket. 웹프로그래밍 기말고사 제출용 포트폴리오 (황지호).</p>
+    </footer>
+
+    <!-- 상품 상세 모달창 -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="margin-top: 10px;">상품명</h2>
+            <h3 id="modalPrice" style="color: var(--primary-color);">가격</h3>
+            <p id="modalDesc" style="margin-top: 20px; margin-bottom: 30px;">상품 설명이 이곳에 들어갑니다.</p>
+            <button type="button" onclick="alert('장바구니에 상품을 담았습니다!'); closeModal();">장바구니 담기</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

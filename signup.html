@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- HTML5 문서임을 선언합니다. -->
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PloiMarket - 회원가입</title>
+    <!-- css 스타일시트를 적용합니다. -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- 맛길 스타일 통합 헤더 -->
+    <header class="site-header">
+        <div class="header-left">
+            <h1><a href="index.html">PloiMarket</a></h1>
+            <nav class="site-nav">
+                <a href="about.html">About</a>
+                <a href="best.html">베스트 상품</a>
+                <a href="it-devices.html">IT 기기</a>
+                <a href="web-templates.html">웹 템플릿</a>
+                <a href="cs.html">고객센터</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input class="search-input" type="text" id="searchInput" placeholder="찾으시는 상품이 있나요?">
+                <button class="search-button" type="button" onclick="searchBtn()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <button class="btn-darkmode" type="button" onclick="toggleDarkMode()">🌙</button>
+            <a href="login.html" class="btn-login">로그인</a>
+            <a href="signup.html" class="btn-signup">회원가입</a>
+        </div>
+    </header>
+
+    <!-- 화면 중앙에 폼을 띄우기 위한 랩퍼(래퍼) 컨테이너입니다. -->
+    <div class="auth-container">
+        <!-- 회원가입 카드는 항목이 많아서 로그인보다 조금 더 넓게(signup-card 클래스) 설계했습니다. -->
+        <div class="auth-card signup-card">
+            <h2>회원가입</h2>
+            <!-- 우측에 필수 입력사항이라는 가이드를 추가합니다. -->
+            <div class="required-note">*필수입력사항</div>
+            <hr>
+            
+            <!-- onsubmit="return signupValidation()" 으로 폼 전송 전 자바스크립트 유효성 검사를 진행합니다. -->
+            <form onsubmit="return signupValidation()">
+                
+                <!-- 1. 아이디 입력 -->
+                <div class="form-group">
+                    <label for="signupId">아이디 <span class="required">*</span></label>
+                    <div class="input-with-button">
+                        <input type="text" id="signupId" placeholder="아이디를 입력해주세요">
+                        <!-- 버튼을 눌렀을 때 checkDuplicateId()가 실행됩니다. -->
+                        <button type="button" onclick="checkDuplicateId()">중복확인</button>
+                    </div>
+                    <!-- 자바스크립트가 조건 위반 시 보여줄 에러 박스입니다. 평소엔 안 보입니다. -->
+                    <div id="signupIdError" class="error-message">아이디를 입력해주세요.</div>
+                </div>
+
+                <!-- 2. 비밀번호 입력 -->
+                <div class="form-group">
+                    <label for="signupPw">비밀번호 <span class="required">*</span></label>
+                    <input type="password" id="signupPw" placeholder="비밀번호를 입력해주세요 (8자리 이상)">
+                    <div id="signupPwError" class="error-message">비밀번호는 8자리 이상이어야 합니다.</div>
+                </div>
+
+                <!-- 3. 비밀번호 확인 -->
+                <div class="form-group">
+                    <label for="signupPwConfirm">비밀번호 확인 <span class="required">*</span></label>
+                    <input type="password" id="signupPwConfirm" placeholder="비밀번호를 한번 더 입력해주세요">
+                    <div id="signupPwConfirmError" class="error-message">비밀번호가 일치하지 않습니다.</div>
+                </div>
+
+                <!-- 4. 이름 입력 -->
+                <div class="form-group">
+                    <label for="signupName">이름 <span class="required">*</span></label>
+                    <input type="text" id="signupName" placeholder="이름을 입력해주세요">
+                    <div id="signupNameError" class="error-message">이름을 입력해주세요.</div>
+                </div>
+
+                <!-- 5. 이메일 입력 (입력칸 + @ 문자 + 선택박스 조합) -->
+                <div class="form-group email-group">
+                    <label for="signupEmailId">이메일 <span class="required">*</span></label>
+                    <div class="email-inputs">
+                        <input type="text" id="signupEmailId" placeholder="예: marketkurly" style="flex: 2;">
+                        <span>@</span>
+                        <select id="signupEmailDomain" style="flex: 2;">
+                            <option value="">선택하기</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="kakao.com">kakao.com</option>
+                            <option value="daum.net">daum.net</option>
+                        </select>
+                        <button type="button" onclick="checkDuplicateEmail()">중복확인</button>
+                    </div>
+                    <div id="signupEmailError" class="error-message">이메일을 올바르게 입력해주세요.</div>
+                </div>
+
+                <!-- 6. 휴대폰 입력 -->
+                <div class="form-group">
+                    <label for="signupPhone">휴대폰 <span class="required">*</span></label>
+                    <div class="input-with-button">
+                        <input type="text" id="signupPhone" placeholder="숫자만 입력해주세요">
+                        <button type="button" onclick="sendAuthCode()">인증번호 받기</button>
+                    </div>
+                    <div id="signupPhoneError" class="error-message">휴대폰 번호는 숫자만 입력해주세요.</div>
+                </div>
+
+                <!-- 7. 주소 검색 (readonly 속성으로 직접 타이핑 방지) -->
+                <div class="form-group">
+                    <label>주소 <span class="required">*</span></label>
+                    <div class="input-with-button">
+                        <!-- readonly 속성을 주면 직접 수정이 안 되고, 스크립트로만 값이 들어갑니다. -->
+                        <input type="text" id="signupAddress" placeholder="주소를 검색해주세요" readonly>
+                        <button type="button" onclick="searchAddress()">주소 검색</button>
+                    </div>
+                    <div id="signupAddressError" class="error-message">주소를 입력해주세요.</div>
+                </div>
+
+                <!-- 8. 성별 선택 (라디오 버튼) -->
+                <div class="form-group">
+                    <label>성별</label>
+                    <div style="display: flex; gap: 20px;">
+                        <!-- name 속성이 같아야 셋 중에 하나만 선택됩니다. 기본은 선택안함에 체크(checked)되어 있습니다. -->
+                        <label class="checkbox-item"><input type="radio" name="gender" value="M"> 남자</label>
+                        <label class="checkbox-item"><input type="radio" name="gender" value="F"> 여자</label>
+                        <label class="checkbox-item"><input type="radio" name="gender" value="N" checked> 선택안함</label>
+                    </div>
+                </div>
+
+                <!-- 9. 생년월일 입력 -->
+                <div class="form-group">
+                    <label>생년월일</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- maxlength 속성으로 각각 글자 수를 제한합니다. -->
+                        <input type="text" id="birthYear" placeholder="YYYY" maxlength="4" style="flex:1; text-align:center;"> /
+                        <input type="text" id="birthMonth" placeholder="MM" maxlength="2" style="flex:1; text-align:center;"> /
+                        <input type="text" id="birthDay" placeholder="DD" maxlength="2" style="flex:1; text-align:center;">
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- 10. 이용약관 동의 (체크박스) -->
+                <div class="form-group">
+                    <label>이용약관동의 <span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <!-- 이 항목 클릭 시 전체 체크가 해제되거나 설정됩니다. -->
+                        <label class="checkbox-item" style="font-weight: bold;">
+                            <input type="checkbox" id="agreeAll" onclick="toggleAllAgreements()"> 전체 동의합니다.
+                        </label>
+                        <hr style="margin: 10px 0;">
+                        <!-- 아래 항목들은 자바스크립트로 일괄 선택을 하기 위해 agreeItem이라는 공통 클래스를 달아뒀습니다. -->
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="agreeItem" id="term1"> 이용약관 동의 (필수)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="agreeItem" id="term2"> 개인정보 수집·이용 동의 (필수)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="agreeItem" id="term3"> 마케팅 광고 활용 수집 동의 (선택)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="agreeItem" id="term4"> 본인은 만 14세 이상입니다. (필수)
+                        </label>
+                    </div>
+                    <!-- 필수 약관 동의 부족 시 출력할 에러 영역 -->
+                    <div id="termError" class="error-message">필수 약관에 모두 동의해주세요.</div>
+                </div>
+
+                <button type="submit" class="submit-btn">가입하기</button>
+                
+                <a href="index.html" class="back-link">← 메인으로 돌아가기</a>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- 사이트 푸터 부분입니다. -->
+        <!-- 하단 푸터 영역 -->
+    <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 60px;">
+        <h3 style="margin-bottom: 15px; color: #2c3e50; font-weight: 800;">PloiMarket</h3>
+        <div style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-muted);">
+            <a href="about.html" style="color: inherit; text-decoration: none; margin: 0 15px;">회사소개</a>
+            <a href="cs.html" style="color: inherit; text-decoration: none; margin: 0 15px;">고객센터</a>
+            <a href="#" style="color: inherit; text-decoration: none; margin: 0 15px;">이용약관</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 PloiMarket. 웹프로그래밍 기말고사 제출용 포트폴리오 (황지호).</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

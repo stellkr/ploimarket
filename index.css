@@ -1,0 +1,986 @@
+/* 구글 폰트에서 Pretendard 폰트를 가져와 페이지 전체에 적용하기 위해 불러옵니다. */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap');
+
+/* CSS 변수 선언 영역: 자주 쓰는 색상과 크기를 변수로 지정해두면 나중에 한 번에 수정하기 편합니다. */
+:root {
+    /* 애플(Apple) 스타일 프리미엄 무채색 & 미니멀 컬러 팔레트 */
+    --primary-color: #0071e3;      /* 애플 특유의 블루 링크/버튼 색상 */
+    --primary-hover: #0077ed;
+    --bg-color: #fbfbfd;           /* 퓨어 화이트에 가까운 극도로 밝은 회색 (애플 배경색) */
+    --card-bg: #ffffff;            /* 카드 배경색 (완전 흰색) */
+    --text-color: #1d1d1f;         /* 애플 표준 텍스트 색상 (완전 검정보다 부드러움) */
+    --text-muted: #86868b;         /* 서브 텍스트 색상 */
+    --nav-bg: rgba(255, 255, 255, 0.7); /* 글래스모피즘용 반투명 배경 */
+    --border-color: #d2d2d7;       /* 얇고 은은한 테두리 색상 */
+    
+    /* 그림자를 거의 없애고 미세한 입체감만 부여 (미니멀리즘) */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.04);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.06);
+    
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+}
+
+/* 모든 페이지의 기본 설정 (body 태그) */
+body { 
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;                   
+    padding: 0;                  
+    background-color: var(--bg-color); 
+    color: var(--text-color);    
+    line-height: 1.6;            
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+/* ==================================================== */
+/* 맛길(Matgil) 스타일 통합 헤더 (Header + Nav) */
+/* ==================================================== */
+.site-header { 
+    background-color: var(--nav-bg); 
+    padding: 15px 40px; 
+    display: flex;               
+    justify-content: space-between; 
+    align-items: center;         
+    position: sticky;            
+    top: 0;
+    z-index: 100;                
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+}
+
+.site-header h1 a {
+    color: var(--text-color);
+    text-decoration: none;       
+}
+
+/* 헤더 안으로 들어온 통합 네비게이션 */
+.site-nav { 
+    display: flex;               
+    gap: 20px;                   
+}
+
+.site-nav a { 
+    color: var(--text-color); 
+    text-decoration: none; 
+    font-weight: 500; 
+    font-size: 1.05rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.site-nav a:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.site-nav a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.header-right {
+    display: flex;               
+    align-items: center;
+    gap: 15px;                   
+}
+
+/* 맛길 스타일 미니멀 검색창 (완전 둥근 알약) */
+.search-bar { 
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: var(--radius-lg);
+    padding: 8px 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar:focus-within {
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-input {
+    border: none;                
+    background: transparent;
+    outline: none;               
+    width: 200px;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: width 0.3s ease; 
+}
+
+.search-input:focus {
+    width: 250px;                
+}
+
+.search-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    color: var(--primary-color);
+    background: transparent;
+    transform: none;
+}
+
+.search-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-login:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-darkmode {
+    background: transparent; 
+    border: 1px solid var(--border-color); 
+    padding: 6px 12px; 
+    font-size: 14px;
+    border-radius: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.btn-darkmode:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+/* 컨텐츠 전체를 담는 기본 컨테이너 래퍼 */
+.container { 
+    display: flex;               
+    flex-direction: column; 
+    gap: 60px; /* 요소 간 넉넉한 여백 확보 */
+    padding: 80px 40px; /* 상하 여백 대폭 증가 */
+    max-width: 1200px; /* 기본 컨테이너 크기 최적화 */          
+    margin: 0 auto;
+    min-height: calc(100vh - 300px); /* 푸터를 하단으로 밀어냄 */
+}
+
+/* 텍스트 위주의 좁은 컨테이너 */
+.container-sm {
+    max-width: 900px;
+}
+
+/* 넓은 레이아웃용 (메인 페이지 등) */
+.container-fluid {
+    max-width: 1400px;
+}
+
+/* 광고 배너 중앙 정렬을 위한 래퍼 */
+.ad-box-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* 프리미엄 광고 박스 스타일 */
+.ad-box { 
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 35px 40px; 
+    text-align: left; 
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    cursor: pointer; 
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ad-box:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg); 
+    border-color: var(--text-color);
+}
+
+.ad-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.ad-box p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin: 0 0 20px 0;
+}
+
+.ad-link {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+.ad-box.special .ad-link {
+    color: #ef4444;
+}
+
+/* ==================================================== */
+/* 2차 개편: 프리미엄 슬라이더(Carousel) 맛길 스타일 개편 */
+/* ==================================================== */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    background-color: var(--card-bg); 
+    border: 1px solid var(--border-color);
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.slide {
+    min-width: 100%;
+    height: 440px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 80px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+/* 좌측 텍스트 영역 */
+.slide-text {
+    flex: 1;
+    max-width: 500px;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.slide-tag {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    background: rgba(0, 113, 227, 0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.slide-text h2 { 
+    font-size: 2.8rem; 
+    margin: 0 0 15px 0; 
+    line-height: 1.3;
+    color: var(--text-color);
+    letter-spacing: -1px;
+}
+
+.slide-text p { 
+    font-size: 1.15rem; 
+    margin-bottom: 30px; 
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.slide-btn { 
+    display: inline-block;
+    background-color: var(--primary-color); 
+    color: white; 
+    text-decoration: none;
+    padding: 14px 35px; 
+    font-weight: 600;
+    font-size: 1.05rem; 
+    border-radius: 30px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slide-btn:hover { 
+    background-color: var(--primary-hover); 
+    transform: translateY(-2px); 
+}
+
+/* 우측 비주얼 (둥둥 떠다니는 태그 뱃지) 영역 */
+.slide-visual {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-visual img {
+    max-width: 90%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.floating-badge {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.badge-a { top: 15%; left: -5%; animation-delay: 0s; }
+.badge-b { top: 75%; left: 10%; animation-delay: 0.5s; }
+.badge-c { top: 40%; right: -5%; animation-delay: 1s; }
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 좌우 화살표 버튼 */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.slider-btn:hover { 
+    background-color: var(--primary-color); 
+    color: white;
+}
+.slider-btn.prev { left: 20px; }
+.slider-btn.next { right: 20px; }
+
+
+/* ==================================================== */
+/* 맛길 스타일 필터 버튼 뱃지 (Pill) */
+/* ==================================================== */
+.filter-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-tag {
+    padding: 8px 20px;
+    border-radius: var(--radius-lg);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-tag.active, .filter-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* ==================================================== */
+/* 공통 버튼 스타일 (프리미엄 둥근 버튼) */
+/* ==================================================== */
+button {
+    background-color: var(--text-color);
+    color: var(--card-bg);
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;             
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: background-color 0.2s ease, transform 0.2s ease; 
+}
+
+button:hover {
+    background-color: #424245; 
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+/* 메인 콘텐츠 (상품 목록 등) */
+main { 
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+/* 사이트 소개 문구 영역 */
+.site-intro { 
+    background-color: var(--card-bg); 
+    padding: 50px 60px; /* 패딩을 대폭 넓혀 답답함 해소 */
+    border-radius: var(--radius-lg); 
+    box-shadow: var(--shadow-sm);
+    /* 컬러 투박한 선 제거하고 미니멀 테두리 적용 */
+    border: 1px solid var(--border-color); 
+}
+
+.site-intro h2 {
+    margin-top: 0;
+    color: var(--text-color); /* 튀는 색상 대신 블랙으로 통일 */
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* 개별 상품 카드 디자인 (맛길 스타일 썸네일) */
+.product-list {
+    display: grid;
+    /* 카드가 너무 좁지 않도록 최소 너비를 260px로 설정 */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px 30px; /* 상하 여백 40, 좌우 여백 30 */
+}
+
+.item { 
+    background-color: transparent; 
+    border-radius: var(--radius-md); 
+    overflow: hidden;
+    box-shadow: none; /* 그림자 제거하여 미니멀하게 */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.item:hover {
+    transform: translateY(-6px);
+}
+
+.item-thumbnail {
+    width: 100%;
+    height: 180px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); /* 파스텔톤 디폴트 */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+/* 썸네일 상단 뱃지 */
+.item-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    color: #333;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.item-info {
+    padding: 0 5px; /* 이미지 영역과 일치하게 양옆 패딩 축소 */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.item h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.item p {
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.item-meta {
+    font-size: 0.9em; 
+    color: var(--text-muted); 
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item button {
+    width: 100%;                 
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: auto;
+    transition: background-color 0.2s;
+}
+.item button:hover {
+    background-color: var(--primary-color);
+}
+
+/* ==================================================== */
+/* 2차 개편: 애플 스타일 다중 컬럼 푸터 (Footer) */
+/* ==================================================== */
+footer { 
+    background-color: #f5f5f7;   /* 애플 스타일의 아주 옅은 회색 */
+    color: #86868b; 
+    padding: 50px 40px 30px 40px; 
+    margin-top: 80px; 
+    font-size: 0.95rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    color: #1d1d1f; /* 푸터 제목을 어두운 색으로 변경 */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #424245; /* 애플의 푸터 링크 색상 */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+    color: #1d1d1f; /* 호버 시 진한 색으로 */
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #d2d2d7;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: #86868b;
+}
+
+
+/* ==================================================== */
+/* 폼 컨테이너 설정 (로그인, 회원가입 화면) */
+/* ==================================================== */
+.auth-container {
+    display: flex;
+    justify-content: center;     
+    align-items: center;         
+    min-height: calc(100vh - 200px); 
+    padding: 40px 20px;
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    padding: 60px 50px; /* 로그인 폼 내부 넉넉한 여백 확보 */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); 
+    width: 100%;
+    max-width: 500px;            
+}
+
+.auth-card.signup-card {
+    max-width: 600px;
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;              
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group label span.required {
+    color: #ef4444;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;                 
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;      
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.input-with-button {
+    display: flex;
+    gap: 10px;                   
+}
+
+.input-with-button button {
+    white-space: nowrap;         
+    border-radius: var(--radius-md);
+}
+
+.form-group.email-group .email-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-color); 
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: var(--radius-md);
+    margin-top: 20px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.required-note {
+    text-align: right;
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
+/* ==================================================== */
+/* 반응형(Responsive) 웹 디자인을 위한 미디어 쿼리 */
+/* ==================================================== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .header-right {
+        flex-direction: column;
+        width: 100%;
+    }
+    .search-area {
+        width: 100%;
+    }
+    .search-area input {
+        flex: 1;
+        width: auto;
+    }
+    .form-group.email-group .email-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .form-group.email-group .email-inputs span {
+        display: none; 
+    }
+    nav {
+        flex-wrap: wrap;
+    }
+    .slide h2 { font-size: 1.8rem; }
+    .footer-content { flex-direction: column; text-align: center; }
+}
+
+/* ==================================================== */
+/* 글로벌 변수 설정 (맛길 벤치마킹 테마) */
+/* ==================================================== */
+:root {
+    --primary-color: #f05650; /* 산뜻한 코랄 레드 */
+    --primary-hover: #e0453f; 
+    --bg-color: #fdfdfd; /* 아주 살짝 따뜻한 오프화이트 */
+    --card-bg: #ffffff;
+    --text-color: #111111;
+    --text-muted: #888888;
+    --border-color: #eeeeee;
+    --radius-sm: 12px;
+    --radius-md: 20px; /* 카드의 둥근 느낌 강화 */
+    --radius-lg: 50px; /* 완전한 알약(Pill) 모양 */
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.03); /* 거의 안 보이는 부드러운 그림자 */
+    --shadow-md: 0 6px 20px rgba(0,0,0,0.05);
+    --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* ==================================================== */
+/* 고도화: 다크 모드 (Dark Mode) 테마 변수 (애플 다크모드) */
+/* ==================================================== */
+[data-theme="dark"] {
+    --bg-color: #000000;         /* 애플 다크모드의 완전한 블랙 */
+    --text-color: #f5f5f7;       /* 텍스트는 약간 부드러운 화이트 */
+    --text-muted: #86868b;
+    --nav-bg: #1c1c1e;
+    --card-bg: #1c1c1e;          /* 카드 배경색 (다크 그레이) */
+    --border-color: #38383a;
+    
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.6);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+[data-theme="dark"] footer {
+    background-color: #1c1c1e;
+    border-top: 1px solid #38383a;
+}
+[data-theme="dark"] .footer-section h3 {
+    color: #f5f5f7;
+}
+[data-theme="dark"] .footer-section ul li a {
+    color: #86868b;
+}
+[data-theme="dark"] .footer-section ul li a:hover {
+    color: #f5f5f7;
+}
+[data-theme="dark"] .footer-bottom {
+    border-top: 1px solid #38383a;
+}
+
+/* ==================================================== */
+/* 고도화: 스크롤 애니메이션 효과 (Fade-In) */
+/* ==================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================================================== */
+/* 고도화: 팝업(모달) 스타일 */
+/* ==================================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    color: var(--text-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.close-btn:hover {
+    color: var(--text-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* 회원가입 강조 버튼 */
+.btn-signup {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    transition: background-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-signup:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* 모달창 내부 공통 버튼 */
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #2c3e50;
+    color: white;
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.modal-content button:hover {
+    background-color: var(--primary-color);
+}

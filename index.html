@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- HTML5 문서임을 선언합니다. -->
+<html lang="ko">
+<head>
+    <!-- 문서의 인코딩을 UTF-8로 설정하여 한글 깨짐을 방지합니다. -->
+    <meta charset="UTF-8">
+    <!-- 모바일 환경에서도 올바른 비율로 보이도록 뷰포트를 설정합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 브라우저 탭에 표시될 제목입니다. -->
+    <title>PloiMarket - 메인 페이지</title>
+    <!-- 외부 CSS 파일을 연결하여 디자인을 적용합니다. -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- 맛길 스타일 통합 헤더 -->
+    <header class="site-header">
+        <div class="header-left">
+            <h1><a href="index.html">PloiMarket</a></h1>
+            <nav class="site-nav">
+                <a href="about.html">About</a>
+                <a href="best.html">베스트 상품</a>
+                <a href="it-devices.html">IT 기기</a>
+                <a href="web-templates.html">웹 템플릿</a>
+                <a href="cs.html">고객센터</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input class="search-input" type="text" id="searchInput" placeholder="찾으시는 상품이 있나요?">
+                <button class="search-button" type="button" onclick="searchBtn()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <button class="btn-darkmode" type="button" onclick="toggleDarkMode()">🌙</button>
+            <a href="login.html" class="btn-login">로그인</a>
+            <a href="signup.html" class="btn-signup">회원가입</a>
+        </div>
+    </header>
+
+    <!-- 사이트의 주요 콘텐츠를 담는 중앙 컨테이너 영역입니다. -->
+    <div class="container">
+        
+        <!-- 메인 영역 (1단 레이아웃) -->
+        <main>
+            <!-- 1차 개편: 프리미엄 슬라이더 (Carousel) 도입 -->
+            <!-- 독창적인 모던 테크 스타일 배경 적용 -->
+            <section class="slider-container fade-in" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border: none; border-radius: 20px;">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide">
+                        <div class="slide-text">
+                            <span class="slide-tag" style="color: #2c3e50; background: rgba(255,255,255,0.6); border-radius: 8px;">💡 신규 기능</span>
+                            <h2 style="font-size: 2.2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 15px; letter-spacing: -0.5px;">나의 프로젝트를 위한<br>완벽한 에셋 찾기</h2>
+                            <p style="color: #444; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px;">코딩 없이 완성하는 하이퀄리티 템플릿부터<br>업무 효율을 200% 올려주는 프리미엄 장비까지.</p>
+                            <button type="button" style="background-color: #2c3e50; color: white; border-radius: 8px;" onclick="location.href='web-templates.html'">전체 보기</button>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-text">
+                            <span class="slide-tag" style="color: #2c3e50; background: rgba(255,255,255,0.6); border-radius: 8px;">🔥 이달의 특가</span>
+                            <h2 style="font-size: 2.2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 15px; letter-spacing: -0.5px;">최고급 무접점 키보드<br>특별 할인전</h2>
+                            <p style="color: #444; font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px;">단 일주일간 진행되는 놀라운 혜택!<br>지금 바로 확인해보세요.</p>
+                            <button type="button" style="background-color: #2c3e50; color: white; border-radius: 8px;" onclick="location.href='it-devices.html'">상품 보기</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 슬라이더 컨트롤 -->
+                <button class="slider-btn prev" onclick="prevSlide()">❮</button>
+                <button class="slider-btn next" onclick="nextSlide()">❯</button>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="showSlide(0)"></span>
+                    <span class="dot" onclick="showSlide(1)"></span>
+                </div>
+            </section>
+
+            <!-- 독창적인 탭 디자인 (필터) -->
+            <div class="filter-tabs fade-in" style="margin-top: 50px; display: flex; justify-content: center; gap: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                <span style="font-weight: bold; color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 8px; cursor: pointer;">전체</span>
+                <span style="color: var(--text-muted); cursor: pointer;">IT 기기</span>
+                <span style="color: var(--text-muted); cursor: pointer;">웹 템플릿</span>
+                <span style="color: var(--text-muted); cursor: pointer;">디자인 에셋</span>
+                <span style="color: var(--text-muted); cursor: pointer;">인터넷 강의</span>
+            </div>
+
+            <!-- 2. 중앙 정렬된 고급형 광고 배너들 -->
+            <section class="ad-box-wrapper fade-in" style="margin-top: 40px;">
+                <div class="ad-box" onclick="adClick()" style="border-radius: 12px;">
+                    <div class="ad-content">
+                        <h3>🎉 특별 할인전! 최대 50% 세일</h3>
+                        <p>기간 한정으로 진행되는 초특가 이벤트를 놓치지 마세요.</p>
+                        <span class="ad-link" style="color: #2c3e50;">자세히 보기 &rarr;</span>
+                    </div>
+                </div>
+                <div class="ad-box special" onclick="location.href='signup.html'" style="border-radius: 12px; border: 1px solid #2c3e50;">
+                    <div class="ad-content">
+                        <h3 style="color: #2c3e50;">🎁 신규 가입 100% 웰컴 쿠폰</h3>
+                        <p>가입 즉시 발급되는 웰컴 쿠폰으로 저렴하게 구매하세요.</p>
+                        <span class="ad-link" style="color: #2c3e50;">지금 가입하기 &rarr;</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 사이트 소개 영역 -->
+            <section class="site-intro fade-in" style="border-radius: 12px;">
+                <h2>환영합니다!</h2>
+                <p>플로이 마켓은 IT 전문가들을 위한 각종 최신 기기와 하이퀄리티 웹/앱 템플릿을 판매하는 쇼핑몰입니다. 당신의 프로젝트를 완벽하게 만들어줄 최고의 에셋을 만나보세요.</p>
+            </section>
+
+            <!-- 메인 화면에 진열되는 추천 상품 목록 영역입니다. -->
+            <h3 class="section-title fade-in" style="margin-top: 50px;">오늘의 추천 상품</h3>
+            <div class="product-list">
+                <!-- 개별 상품 카드 1 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;">
+                        <div class="item-badge" style="background: #2c3e50; color: white; border-radius: 6px;">✨ HOT</div>
+                    </div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">최고급 기계식 키보드</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.9 · 리뷰 1,200개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">150,000원</p>
+                        <button type="button" onclick="openModal('최고급 기계식 키보드', '150,000원', '타건감이 우수하고 피로도가 적은 최상급 무접점 키보드입니다.')">상세보기</button>
+                    </div>
+                </div>
+                <!-- 개별 상품 카드 2 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;">
+                        <div class="item-badge" style="background: #2c3e50; color: white; border-radius: 6px;">👍 BEST</div>
+                    </div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">리액트(React) 대시보드 템플릿</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.8 · 리뷰 850개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">50,000원</p>
+                        <button type="button" onclick="openModal('리액트(React) 대시보드 템플릿', '50,000원', '관리자 페이지를 단 하루만에 구축할 수 있는 깔끔한 UI의 템플릿입니다.')">상세보기</button>
+                    </div>
+                </div>
+                <!-- 개별 상품 카드 3 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;">
+                        <div class="item-badge" style="background: #e9ecef; color: #495057; border-radius: 6px;">NEW</div>
+                    </div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">커브드 와이드 모니터 32인치</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.7 · 리뷰 410개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">320,000원</p>
+                        <button type="button" onclick="openModal('커브드 와이드 모니터 32인치', '320,000원', '시야를 감싸는 곡률과 4K 해상도로 작업 효율을 극대화하세요.')">상세보기</button>
+                    </div>
+                </div>
+                <!-- 개별 상품 카드 4 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">무선 노이즈 캔슬링 헤드폰</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.9 · 리뷰 1,100개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">280,000원</p>
+                        <button type="button" onclick="openModal('무선 노이즈 캔슬링 헤드폰', '280,000원', '개발 집중력을 높여주는 완벽한 소음 차단 기능이 탑재되어 있습니다.')">상세보기</button>
+                    </div>
+                </div>
+                <!-- 개별 상품 카드 5 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">Vue.js 쇼핑몰 템플릿</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.8 · 리뷰 780개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">45,000원</p>
+                        <button type="button" onclick="openModal('Vue.js 쇼핑몰 템플릿', '45,000원', '반응형 디자인과 컴포넌트 구조가 잘 짜여진 Vue3 쇼핑몰 소스입니다.')">상세보기</button>
+                    </div>
+                </div>
+                <!-- 개별 상품 카드 6 -->
+                <div class="item fade-in">
+                    <div class="item-thumbnail" style="background-color: #f1f3f5; border-radius: 12px;"></div>
+                    <div class="item-info">
+                        <h4 style="font-weight: 700;">인체공학 무선 마우스</h4>
+                        <div class="item-meta" style="color: #868e96; font-size: 0.9rem;">⭐ 4.7 · 리뷰 420개</div>
+                        <p style="font-size: 1.1rem; font-weight: bold;">95,000원</p>
+                        <button type="button" onclick="openModal('인체공학 무선 마우스', '95,000원', '손목 터널 증후군을 예방하는 인체공학적 디자인의 버티컬 마우스입니다.')">상세보기</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- 하단 푸터 영역 -->
+    <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 60px;">
+        <h3 style="margin-bottom: 15px; color: #2c3e50; font-weight: 800;">PloiMarket</h3>
+        <div style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-muted);">
+            <a href="about.html" style="color: inherit; text-decoration: none; margin: 0 15px;">회사소개</a>
+            <a href="cs.html" style="color: inherit; text-decoration: none; margin: 0 15px;">고객센터</a>
+            <a href="#" style="color: inherit; text-decoration: none; margin: 0 15px;">이용약관</a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 PloiMarket. 웹프로그래밍 기말고사 제출용 포트폴리오 (황지호).</p>
+    </footer>
+
+    <!-- 상품 상세 모달창 -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="margin-top: 10px;">상품명</h2>
+            <h3 id="modalPrice" style="color: var(--primary-color);">가격</h3>
+            <p id="modalDesc" style="margin-top: 20px; margin-bottom: 30px;">상품 설명이 이곳에 들어갑니다.</p>
+            <button type="button" onclick="alert('장바구니에 상품을 담았습니다!'); closeModal();">장바구니 담기</button>
+        </div>
+    </div>
+
+    <!-- 자바스크립트 파일을 연결하여 동적 기능을 활성화합니다. 항상 body가 끝나기 직전에 위치하는 것이 좋습니다. -->
+    <script src="script.js"></script>
+
+</body>
+</html>
